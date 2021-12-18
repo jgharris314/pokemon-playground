@@ -7,22 +7,26 @@
 }
 
 .poke-list {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+	scrollbar-width: thin;
+	scrollbar-color: purple black;
 }
 
 .poke-list::-webkit-scrollbar {
-	display: none;
+	width: 12px;
+}
+
+.poke-list::-webkit-scrollbar-track {
+	background: black; /* color of the tracking area */
+}
+
+.poke-list::-webkit-scrollbar-thumb {
+	background-color: purple;
+	border-radius: 2px;
+	/* border: 3px solid black; */
 }
 
 li {
 	list-style: none;
-}
-
-.type {
-	width: 70px;
-	border-radius: 5px;
-	margin: 2px;
 }
 
 .normal {
@@ -73,6 +77,7 @@ li {
 
 .dark {
 	background-color: #61380d;
+	color: white;
 }
 
 .rock {
@@ -85,6 +90,7 @@ li {
 
 .ghost {
 	background-color: #7763a9;
+	color: white;
 }
 
 .steel {
