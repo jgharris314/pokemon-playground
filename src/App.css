@@ -1,38 +1,100 @@
 .App {
-  text-align: center;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.poke-list {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.poke-list::-webkit-scrollbar {
+	display: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+li {
+	list-style: none;
 }
 
-.App-link {
-  color: #61dafb;
+.type {
+	width: 70px;
+	border-radius: 5px;
+	margin: 2px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.normal {
+	background-color: #a5ae8c;
+}
+
+.fire {
+	background-color: orange;
+}
+
+.water {
+	background-color: #6fa8dc;
+}
+
+.grass {
+	background-color: lime;
+}
+
+.electric {
+	background-color: yellow;
+}
+
+.ice {
+	background-color: #9fc5e8;
+}
+
+.ground {
+	background-color: #e7cd7d;
+}
+
+.flying {
+	background-color: #b7a4f2;
+}
+
+.poison {
+	background-color: #6a329f;
+	color: white;
+}
+
+.fighting {
+	background-color: #ca271c;
+	color: white;
+}
+
+.psychic {
+	background-color: #ff3fb0;
+}
+
+.dark {
+	background-color: #61380d;
+}
+
+.rock {
+	background-color: #cc9e57;
+}
+
+.bug {
+	background-color: #b0ce6c;
+}
+
+.ghost {
+	background-color: #7763a9;
+}
+
+.steel {
+	background-color: #b0a9c2;
+}
+
+.dragon {
+	background-color: #732fff;
+}
+
+.fairy {
+	background-color: #fabbe0;
 }
