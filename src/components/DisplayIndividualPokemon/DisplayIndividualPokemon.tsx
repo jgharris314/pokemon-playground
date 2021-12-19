@@ -1,11 +1,18 @@
-import React, { FC } from "react";
-import { IndividualPokemon, PokemonTypes } from "../../types";
-
+import React, { FC, useState } from "react";
+import { IndividualPokemon, PokemonType, PokemonTypes } from "../../types";
+import { HoverDisplayTypeAttributes } from "./components/HoverDisplayTypeAttributes/HoverDisplayTypeAttributes";
 interface props {
 	individualPokemon: IndividualPokemon;
 }
 
 export const DisplayIndividualPokemon: FC<props> = (props: props) => {
+	const [hoverType, setHoverType] = useState<boolean>(false);
+	const [activeType, setActiveType] = useState<PokemonType>();
+	function handleTypeHover(pokemonType: PokemonType): void {
+		setActiveType(pokemonType);
+		setHoverType(true);
+	}
+
 	return (
 		<div className="flex flex-col w-1/5 rounded-xl justify-center items-center bg-slate-200 shadow-lg p-1">
 			<div className="flex flex-row">
@@ -30,8 +37,10 @@ export const DisplayIndividualPokemon: FC<props> = (props: props) => {
 					(type: PokemonTypes, index: number) => {
 						return (
 							<div
-								className={`flex flex-col w-1/4 rounded-xl mx-1 p-0 ${type.type.name} justify-center items-center`}
+								className={`flex flex-col w-1/2 rounded-xl mx-1 p-0 ${type.type.name} justify-center items-center`}
 								key={index}
+								onMouseEnter={() => handleTypeHover(type.type)}
+								onMouseLeave={() => setHoverType(false)}
 							>
 								{type.type.name.charAt(0).toUpperCase() +
 									type.type.name.slice(1)}
@@ -40,6 +49,9 @@ export const DisplayIndividualPokemon: FC<props> = (props: props) => {
 					}
 				)}
 			</div>
+			{hoverType && activeType && (
+				<HoverDisplayTypeAttributes pokemonType={activeType} />
+			)}
 		</div>
 	);
 };

@@ -8,6 +8,7 @@ import "./App.css";
 import { AllPokemonData, IndividualPokemon } from "./types";
 import { DisplayPokemonGroup } from "./components/DisplayPokemonGroup/DisplayPokemonGroup";
 import { DisplayIndividualPokemon } from "./components/DisplayIndividualPokemon/DisplayIndividualPokemon";
+
 function App() {
 	const [pokemonGroup, setPokemonGroup] = useState<AllPokemonData>();
 	const [individualPokemon, setIndividualPokemon] =

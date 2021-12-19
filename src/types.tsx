@@ -88,6 +88,53 @@ export type PokemonTypes = {
 	type: PokemonType;
 };
 
+export type Generation = {
+	name: string;
+	url: string;
+};
+
+export type PokemonTypeGameIndex = {
+	game_index: number;
+	generation: Generation;
+};
+
+export type Language = {
+	name: string;
+	url: string;
+};
+
+export type Name = {
+	language: Language;
+	name: string;
+};
+// the pokemon object shaped for when you use the /type route
+export type PokemonTypePokemon = {
+	pokemong: IndividualPokemon;
+	slot: number;
+};
+
+export type Damage_Relations = {
+	double_damage_from: Array<PokemonType>;
+	double_damage_to: Array<PokemonType>;
+	half_damage_from: Array<PokemonType>;
+	half_damage_to: Array<PokemonType>;
+	no_damage_from: Array<PokemonType | null>;
+	no_damage_to: Array<PokemonType | null>;
+};
+
+export type PokemonTypeAttributes = {
+	damage_relations: Damage_Relations;
+	game_indices: Array<PokemonTypeGameIndex>;
+	generation: Generation;
+	id: number;
+	move_damage_class: IndividualMove;
+	moves: Array<IndividualMove>;
+	name: string;
+	names: Array<Name>;
+	past_damage_relations: Array<any>;
+	pokemon: Array<PokemonTypePokemon>;
+};
+
 export type IndividualPokemon = {
 	abilities: Array<Abilities>;
 	base_experience: number;

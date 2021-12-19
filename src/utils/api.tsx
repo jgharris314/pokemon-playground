@@ -1,4 +1,8 @@
-import { AllPokemonData, IndividualPokemon } from "../types";
+import {
+	AllPokemonData,
+	IndividualPokemon,
+	PokemonTypeAttributes,
+} from "../types";
 /**
  * Defines the base URL for the API.
  * The default values is overridden by the `API_BASE_URL` environment variable.
@@ -87,6 +91,20 @@ export async function listIndividualPokemon(
 	signal: any,
 	url: string
 ): Promise<IndividualPokemon> {
+	const options = {
+		method: "GET",
+		headers,
+		signal,
+	};
+
+	const res = await fetchJson(url, options);
+	return res;
+}
+
+export async function listPokemonTypeAttributes(
+	signal: any,
+	url: string
+): Promise<PokemonTypeAttributes> {
 	const options = {
 		method: "GET",
 		headers,
