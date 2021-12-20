@@ -147,7 +147,7 @@ export type IndividualPokemon = {
 	location_area_encounters: string;
 	moves: Array<Move>;
 	name: string;
-	orer: number;
+	order: number;
 	past_types: Array<any>;
 	species: Species;
 	sprites: any;

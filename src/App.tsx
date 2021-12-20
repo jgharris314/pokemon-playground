@@ -8,11 +8,14 @@ import "./App.css";
 import { AllPokemonData, IndividualPokemon } from "./types";
 import { DisplayPokemonGroup } from "./components/DisplayPokemonGroup/DisplayPokemonGroup";
 import { DisplayIndividualPokemon } from "./components/DisplayIndividualPokemon/DisplayIndividualPokemon";
-
+import { DisplayTeam } from "./components/DisplayTeam/DisplayTeam";
 function App() {
 	const [pokemonGroup, setPokemonGroup] = useState<AllPokemonData>();
 	const [individualPokemon, setIndividualPokemon] =
 		useState<IndividualPokemon>();
+	const [pokemonTeam, setPokemonTeam] = useState<Array<IndividualPokemon>>(
+		[]
+	);
 
 	useEffect(() => {
 		const abortController = new AbortController();
@@ -21,6 +24,8 @@ function App() {
 
 			.catch((error) => error);
 	}, []);
+
+	useEffect(() => {}, [pokemonTeam]);
 
 	function nextPokemonGroup(url: string): void {
 		const abortController = new AbortController();
@@ -37,6 +42,20 @@ function App() {
 			.catch((error) => error);
 	}
 
+	function handleAddToTeam(pokemonToAdd: IndividualPokemon): void {
+		if (pokemonTeam.length < 6) {
+			setPokemonTeam([...pokemonTeam, pokemonToAdd]);
+		}
+	}
+
+	function handleRemoveFromTeam(pokemonToRemove: IndividualPokemon): void {
+		setPokemonTeam([
+			...pokemonTeam.filter((pokemon) => {
+				return pokemon !== pokemonToRemove;
+			}),
+		]);
+	}
+
 	return (
 		<div className="flex flex-col justify-center items-center">
 			{pokemonGroup && (
@@ -47,8 +66,22 @@ function App() {
 				/>
 			)}
 			{individualPokemon && (
-				<DisplayIndividualPokemon
-					individualPokemon={individualPokemon}
+				<>
+					<DisplayIndividualPokemon
+						individualPokemon={individualPokemon}
+						status="normal"
+						handleRemoveFromTeam={handleRemoveFromTeam}
+					/>
+					<button onClick={() => handleAddToTeam(individualPokemon)}>
+						Add to Team
+					</button>
+				</>
+			)}
+			{pokemonTeam && (
+				<DisplayTeam
+					pokemonTeam={pokemonTeam}
+					setPokemonTeam={setPokemonTeam}
+					handleRemoveFromTeam={handleRemoveFromTeam}
 				/>
 			)}
 		</div>

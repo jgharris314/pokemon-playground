@@ -3,6 +3,8 @@ import { IndividualPokemon, PokemonType, PokemonTypes } from "../../types";
 import { HoverDisplayTypeAttributes } from "./components/HoverDisplayTypeAttributes/HoverDisplayTypeAttributes";
 interface props {
 	individualPokemon: IndividualPokemon;
+	status: string;
+	handleRemoveFromTeam: Function;
 }
 
 export const DisplayIndividualPokemon: FC<props> = (props: props) => {
@@ -13,8 +15,8 @@ export const DisplayIndividualPokemon: FC<props> = (props: props) => {
 		setHoverType(true);
 	}
 
-	return (
-		<div className="flex flex-col w-1/5 rounded-xl justify-center items-center bg-slate-200 shadow-lg p-1">
+	return props.individualPokemon.name ? (
+		<div className="flex flex-col w-80 rounded-xl justify-center items-center bg-slate-200 shadow-lg p-1">
 			<div className="flex flex-row">
 				{props.individualPokemon.name.charAt(0).toUpperCase() +
 					props.individualPokemon.name.slice(1)}
@@ -49,9 +51,20 @@ export const DisplayIndividualPokemon: FC<props> = (props: props) => {
 					}
 				)}
 			</div>
+			{props.status === "team" && (
+				<div>
+					<button
+						onClick={() =>
+							props.handleRemoveFromTeam(props.individualPokemon)
+						}
+					>
+						Remove {props.individualPokemon.name}
+					</button>{" "}
+				</div>
+			)}
 			{hoverType && activeType && (
 				<HoverDisplayTypeAttributes pokemonType={activeType} />
 			)}
 		</div>
-	);
+	) : null;
 };
